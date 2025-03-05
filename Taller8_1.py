@@ -2,7 +2,7 @@ def convertir_a_base16(numero):
     if numero == 0:
         return "0"
 
-    hex_digits = "0123456789"
+    hex_digits = "0123456789ABCDEF"
 
     resultado = []
 
