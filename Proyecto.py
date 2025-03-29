@@ -1,27 +1,19 @@
 import tkinter as tk
-from tkinter import messagebox
 import struct
 import re
+
 def int_to_twos_complement(num):
     return [(num >> i) & 1 for i in range(31, -1, -1)]
-
-def float_to_ieee754(num):
-    packed = struct.pack('!f', num)  
-    unpacked = struct.unpack('!I', packed)[0]  
-    return [(unpacked >> i) & 1 for i in range(31, -1, -1)]
 
 def evaluar_expresion(expr):
     try:
         if re.search(r'[^0-9+\-*/.]', expr):
             raise ValueError("Expresión inválida")
-        
+
+        expr = expr.replace("/", "//")  
         resultado = eval(expr)
-        
-        if '.' in expr:
-            binario = float_to_ieee754(resultado)
-        else:
-            binario = int_to_twos_complement(int(resultado))
-        
+        binario = int_to_twos_complement(int(resultado))
+
         return resultado
     except Exception as e:
         return f"Error: {str(e)}"
@@ -48,3 +40,4 @@ salida = tk.Label(root, text="Resultado: ")
 salida.pack()
 
 root.mainloop()
+
