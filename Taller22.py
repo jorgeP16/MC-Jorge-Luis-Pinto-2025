@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Datos de la tabla
 X = np.array([
     [1, 0],
     [1, 0.5],
